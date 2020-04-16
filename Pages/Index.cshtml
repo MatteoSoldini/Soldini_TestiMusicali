@@ -1,0 +1,31 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>News</h1>
+
+<form action="/Lyrics/Create">
+    <button type="submit">Aggiungi</button>
+</form>
+
+<table class="table">
+    <tr>
+        <th>Canzone</th>
+        <th>Artista</th>
+        <th>Scrittore</th>
+        <th>Data uscita</th>
+        <th>Testo</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody id="lyrics"></tbody>
+</table>
+
+<p id="counter"></p>
+
+<script src="js/news.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    getItems();
+</script>

@@ -1,0 +1,68 @@
+﻿@page
+@model Soldini_TestiMusicali.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Homepage</h1>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-page="Create">Crea</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lyric[0].song)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lyric[0].artist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lyric[0].writer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lyric[0].release_date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lyric[0].text)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Lyric)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.song)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.artist)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.writer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.release_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.text)
+                </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.id">Modifica</a> |
+                        <a asp-page="./Details" asp-route-id="@item.id">Dettagli</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.id">Elimina</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
